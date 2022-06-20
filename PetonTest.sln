@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetonTest", "PetonTest\PetonTest.csproj", "{6ADAAE78-E2C2-4DD9-B28E-CEB32431FFAA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{DB1D7DFE-60EB-45EB-B6BD-CAA2F7A5EFEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ADAAE78-E2C2-4DD9-B28E-CEB32431FFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADAAE78-E2C2-4DD9-B28E-CEB32431FFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADAAE78-E2C2-4DD9-B28E-CEB32431FFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADAAE78-E2C2-4DD9-B28E-CEB32431FFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB1D7DFE-60EB-45EB-B6BD-CAA2F7A5EFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB1D7DFE-60EB-45EB-B6BD-CAA2F7A5EFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB1D7DFE-60EB-45EB-B6BD-CAA2F7A5EFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB1D7DFE-60EB-45EB-B6BD-CAA2F7A5EFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE739310-4792-4D18-8D04-F64B59C13B38}
+	EndGlobalSection
+EndGlobal
