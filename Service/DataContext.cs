@@ -4,20 +4,20 @@ using System;
 
 namespace Service.Context
 {
-    public class ProjectDataContext : DbContext
+    public class DataContext : DbContext
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectObject> Objects { get; set; }
-        public ProjectDataContext(DbContextOptions<ProjectDataContext> options) : base(options) { }
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         private void ConfigureProjects(ModelBuilder modelBuilder)
         {
             var entity = modelBuilder.Entity<Project>().ToTable("Projects");
-            entity.HasKey(p => p.Sipher);
-            entity.Property(p => p.Sipher).HasColumnName("sipher");
+            entity.HasKey(p => p.Сipher);
+            entity.Property(p => p.Сipher).HasColumnName("sipher");
             entity.Property(p => p.Executor).HasColumnName("executor");
             entity.Property(p => p.Name).HasColumnName("name");
-            entity.HasMany(p => p.Objects).WithOne(o => o.Project).HasForeignKey(o => o.ProjectSipher);
+            entity.HasMany(p => p.Objects).WithOne(o => o.Project).HasForeignKey(o => o.ProjectСipher);
         }
         private void ConfigureObjects(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,12 @@ namespace Service.Context
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-           => optionsBuilder.LogTo(Console.WriteLine);
+        {
+            optionsBuilder.LogTo(Console.WriteLine);
+            if(!optionsBuilder.IsConfigured)
+            {
+                Console.WriteLine("Warning! ProjectDataContext is not configure!");
+            }
+        }
     }
 }

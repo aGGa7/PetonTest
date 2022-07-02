@@ -5,9 +5,9 @@ namespace Service.Models
 {
     public class Project
     {
-        public string Sipher { get; set; }
+        public string Сipher { get; set; }
         public string Name { get; set; }
         public Executor Executor { get; set; }
-        public List<ProjectObject> Objects { get; set; } = new();
+        public virtual List<ProjectObject> Objects { get; set; } 
     }
 }
