@@ -13,6 +13,7 @@ namespace Service.Models
         public string Name { get; set; }
         public Executor  Executor { get; set; }
         public string ParentCode { get; set; }
+        public virtual List<ProjectObject> Objects { get; set; }
         public string ProjectСipher { get; set; }
         public virtual Project Project { get; set; }
     }

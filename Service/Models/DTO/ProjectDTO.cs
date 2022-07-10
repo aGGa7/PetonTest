@@ -12,6 +12,6 @@ namespace Service.Models.DTO
         public string Cipher { get; set; }
         public string Name { get; set; }
         public Executor Executor { get; set; }
-        public List<ProjectObject> Objects { get; set; }
+        public List<ProjectObjectDTO> Objects { get; set; }
     }
 }

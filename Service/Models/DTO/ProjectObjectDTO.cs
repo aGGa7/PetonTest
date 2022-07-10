@@ -12,7 +12,7 @@ namespace Service.Models.DTO
         public string Code { get; set; }
         public string Name { get; set; }
         public Executor Executor { get; set; }
-        public string ParentCode { get; set; }
-        public Project Project { get; set; }
+        public List<ProjectObjectDTO> Objects { get; set; }
+       // public string ParentCode { get; set; }
     }
 }

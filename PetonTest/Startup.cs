@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PetonTest.Models;
+using Service;
 using Service.Context;
 using Service.DAL;
 using Service.Interface;
@@ -34,7 +35,10 @@ namespace PetonTest
             {
                 options.UseSqlServer(Configuration.GetConnectionString("PetonDatabaseConnection"));
             });
-            services.AddScoped<IGenericRepository, GenericRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IObjectRepository, ObjectRepository>();
+            services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,16 +55,26 @@ namespace PetonTest
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Peton API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
+           // app.UseHttpsRedirection();
+           // app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
+           // app.UseAuthorization();
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

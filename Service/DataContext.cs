@@ -12,22 +12,22 @@ namespace Service.Context
 
         private void ConfigureProjects(ModelBuilder modelBuilder)
         {
-            var entity = modelBuilder.Entity<Project>().ToTable("Projects");
-            entity.HasKey(p => p.Сipher);
-            entity.Property(p => p.Сipher).HasColumnName("sipher");
+            var entity = modelBuilder.Entity<Project>().ToTable("Project");
+            entity.HasKey(p => p.Cipher);
+            entity.Property(p => p.Cipher).HasColumnName("cipher");
             entity.Property(p => p.Executor).HasColumnName("executor");
             entity.Property(p => p.Name).HasColumnName("name");
             entity.HasMany(p => p.Objects).WithOne(o => o.Project).HasForeignKey(o => o.ProjectСipher);
         }
         private void ConfigureObjects(ModelBuilder modelBuilder)
         {
-            var entity = modelBuilder.Entity<ProjectObject>().ToTable("Objects");
+            var entity = modelBuilder.Entity<ProjectObject>().ToTable("ProjectObject");
             entity.HasKey(o => o.Code);
             entity.Property(o => o.Code).HasColumnName("code");
             entity.Property(o => o.Executor).HasColumnName("executor");
             entity.Property(o => o.Name).HasColumnName("name");
             entity.Property(o => o.ParentCode).HasColumnName("parent_code");
-            //entity.HasOne(o => o.Project).WithMany(p => p.Objects).HasForeignKey(o => o.ProjectSipher);
+            entity.HasMany(o => o.Objects).WithOne().HasForeignKey(o => o.ParentCode);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
