@@ -10,8 +10,10 @@ namespace Service.Interface
 {
     public interface IObjectRepository
     {
-        IEnumerable<ProjectObjectDTO> GetObjects(Expression<Func<ProjectObject, bool>> filter = null, Func<IQueryable<ProjectObject>, IOrderedQueryable<ProjectObject>> orderBy = null,
+        ProjectObjectDTO[] GetObjects(Expression<Func<ProjectObject, bool>> filter = null, Func<IQueryable<ProjectObject>, IOrderedQueryable<ProjectObject>> orderBy = null,
         string includeProperties = "");
-
+        string CreateObject(ProjectObjectDTO objectModel);
+        bool DeleteObject(string code);
+        bool UpdateObject(ProjectObjectDTO updateObject);
     }
 }

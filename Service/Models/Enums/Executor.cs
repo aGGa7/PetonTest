@@ -5,7 +5,7 @@ namespace Service.Models.Enums
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Executor
     {
-        Pethon,
         Sub1,
+        Sub2,
     }
 }

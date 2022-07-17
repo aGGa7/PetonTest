@@ -23,7 +23,7 @@ namespace PetonTest.Controllers
         [HttpPost]
         public ActionResult<IEnumerable<ProjectDTO>> GetAllProjects()
         {
-            var projects = _repository.GetProjects();
+            var projects = _repository.GetProjects(null, null, nameof(ProjectDTO.Objects));
             return projects;
         }
 

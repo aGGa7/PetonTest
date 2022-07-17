@@ -40,7 +40,7 @@ namespace Service
                 }
                 catch
                 {
-                    return new ProjectDTO[0];
+                    throw;
                 }
 
             }
@@ -52,7 +52,7 @@ namespace Service
                 }
                 catch
                 {
-                    return new ProjectDTO[0];
+                    throw;
                 }
             }
         }

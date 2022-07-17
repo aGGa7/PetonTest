@@ -13,6 +13,8 @@ namespace Service.Models.DTO
         public string Name { get; set; }
         public Executor Executor { get; set; }
         public List<ProjectObjectDTO> Objects { get; set; }
-       // public string ParentCode { get; set; }
+        public string ParentObjectCode { get; set; }
+        public string ProjectСipher { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

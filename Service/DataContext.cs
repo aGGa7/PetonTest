@@ -26,8 +26,8 @@ namespace Service.Context
             entity.Property(o => o.Code).HasColumnName("code");
             entity.Property(o => o.Executor).HasColumnName("executor");
             entity.Property(o => o.Name).HasColumnName("name");
-            entity.Property(o => o.ParentCode).HasColumnName("parent_code");
-            entity.HasMany(o => o.Objects).WithOne().HasForeignKey(o => o.ParentCode);
+            entity.Property(o => o.ParentObjectCode).HasColumnName("parentcode");
+            entity.HasMany(o => o.Objects).WithOne().HasForeignKey(o => o.ParentObjectCode);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

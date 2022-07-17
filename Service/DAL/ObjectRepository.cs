@@ -20,7 +20,7 @@ namespace Service.DAL
             this._dataContext = context;
         }
 
-        public IEnumerable<ProjectObjectDTO> GetObjects(Expression<Func<ProjectObject, bool>> filter = null, Func<IQueryable<ProjectObject>, IOrderedQueryable<ProjectObject>> orderBy = null,
+        public ProjectObjectDTO[] GetObjects(Expression<Func<ProjectObject, bool>> filter = null, Func<IQueryable<ProjectObject>, IOrderedQueryable<ProjectObject>> orderBy = null,
         string includeProperties = "")
         {
             IQueryable<ProjectObject> query = _dataContext.Objects.AsNoTracking();
@@ -46,7 +46,57 @@ namespace Service.DAL
         public string CreateObject (ProjectObjectDTO objectModel)
         {
             objectModel.Code = Guid.NewGuid().ToString();
+            try
+            {
+                _dataContext.Objects.Add(Map(objectModel));
+                _dataContext.SaveChanges();
+            }
+            catch
+            {
+                return Guid.Empty.ToString();
+            }
+            return objectModel.Code;
+        }
 
+        public bool DeleteObject (string code)
+        {
+            var projectObject = _dataContext.Objects.FirstOrDefault(o => o.Code == code);
+            if(projectObject == null)
+            {
+                return false;
+            }
+            try
+            {
+                _dataContext.Objects.Remove(projectObject);
+                _dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateObject (ProjectObjectDTO updateObject)
+        {
+            var projectObject = _dataContext.Objects.FirstOrDefault(o => o.Code == updateObject.Code);
+            if (projectObject == null)
+            {
+                return false;
+            }
+            
+            try
+            {
+                projectObject.Name = updateObject.Name;
+                projectObject.Executor = updateObject.Executor;
+                projectObject.ParentObjectCode = updateObject.ParentObjectCode;
+                _dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private ProjectObjectDTO Map (ProjectObject model)
@@ -56,6 +106,20 @@ namespace Service.DAL
                 Code = model.Code,
                 Executor = model.Executor,
                 Name = model.Name,
+                ParentObjectCode = model.ParentObjectCode,
+                ProjectСipher = model.ProjectСipher
+            };
+        }
+
+        private ProjectObject Map(ProjectObjectDTO model)
+        {
+            return new ProjectObject()
+            {
+                Code = model.Code,
+                Executor = model.Executor,
+                Name = model.Name,
+                ParentObjectCode = model.ParentObjectCode,
+                ProjectСipher = model.ProjectСipher
             };
         }
     }
