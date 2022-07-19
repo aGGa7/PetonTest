@@ -23,7 +23,8 @@ namespace Service
         public ProjectDTO[] GetProjects(Expression<Func<Project, bool>> filter = null, Func<IQueryable<Project>, IOrderedQueryable<Project>> orderBy = null,
            string includeProperties = "")
         {
-            IQueryable<Project> query = _dataContext.Projects.AsNoTracking();
+            IQueryable<Project> query = _dataContext.Projects.AsNoTracking()
+                                                             .Where(e => !(e is ProjectObject));
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -138,7 +139,8 @@ namespace Service
         {
             return new ProjectObjectDTO()
             {
-                Code = model.Code,
+                ParentKey = model.ParentKey,
+                Cipher = model.Cipher,
                 Executor = model.Executor,
                 Name = model.Name
             };
@@ -147,7 +149,7 @@ namespace Service
         {
             return new ProjectObject()
             {
-                Code = model.Code,
+                Cipher = model.Cipher,
                 Executor = model.Executor,
                 Name = model.Name
             };

@@ -45,7 +45,7 @@ namespace Service.DAL
 
         public string CreateObject (ProjectObjectDTO objectModel)
         {
-            objectModel.Code = Guid.NewGuid().ToString();
+            objectModel.Cipher = Guid.NewGuid().ToString();
             try
             {
                 _dataContext.Objects.Add(Map(objectModel));
@@ -55,12 +55,12 @@ namespace Service.DAL
             {
                 return Guid.Empty.ToString();
             }
-            return objectModel.Code;
+            return objectModel.Cipher;
         }
 
-        public bool DeleteObject (string code)
+        public bool DeleteObject (string cipher)
         {
-            var projectObject = _dataContext.Objects.FirstOrDefault(o => o.Code == code);
+            var projectObject = _dataContext.Objects.FirstOrDefault(o => o.Cipher == cipher);
             if(projectObject == null)
             {
                 return false;
@@ -79,7 +79,7 @@ namespace Service.DAL
 
         public bool UpdateObject (ProjectObjectDTO updateObject)
         {
-            var projectObject = _dataContext.Objects.FirstOrDefault(o => o.Code == updateObject.Code);
+            var projectObject = _dataContext.Objects.FirstOrDefault(o => o.Cipher == updateObject.Cipher);
             if (projectObject == null)
             {
                 return false;
@@ -89,7 +89,7 @@ namespace Service.DAL
             {
                 projectObject.Name = updateObject.Name;
                 projectObject.Executor = updateObject.Executor;
-                projectObject.ParentObjectCode = updateObject.ParentObjectCode;
+                projectObject.ParentKey = updateObject.ParentKey;
                 _dataContext.SaveChanges();
                 return true;
             }
@@ -103,11 +103,11 @@ namespace Service.DAL
         {
             return new ProjectObjectDTO()
             {
-                Code = model.Code,
+                Cipher = model.Cipher,
                 Executor = model.Executor,
                 Name = model.Name,
-                ParentObjectCode = model.ParentObjectCode,
-                ProjectСipher = model.ProjectСipher
+                ParentKey = model.ParentKey,
+                Objects = model.Objects?.Select(Map).ToList()
             };
         }
 
@@ -115,11 +115,10 @@ namespace Service.DAL
         {
             return new ProjectObject()
             {
-                Code = model.Code,
+                Cipher = model.Cipher,
                 Executor = model.Executor,
                 Name = model.Name,
-                ParentObjectCode = model.ParentObjectCode,
-                ProjectСipher = model.ProjectСipher
+                ParentKey = model.ParentKey,
             };
         }
     }

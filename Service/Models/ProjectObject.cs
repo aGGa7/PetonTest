@@ -8,14 +8,8 @@ using System.Threading.Tasks;
 
 namespace Service.Models
 {
-    public class ProjectObject
+    public class ProjectObject : Project
     {
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public Executor  Executor { get; set; }
-        public string ParentObjectCode { get; set; }
-        public virtual List<ProjectObject> Objects { get; set; }
-        public string ProjectСipher { get; set; }
-        public virtual Project Project { get; set; }
+        public string ParentKey { get; set; }
     }
 }
